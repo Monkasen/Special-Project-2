@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-// Test comment to test committing to master
 
 namespace Special_Project_2
 {
