@@ -33,16 +33,10 @@ namespace Special_Project_2
             // Add player 1's card labels to a list
             player1CardLabels.Add(lbl_Player1Card1);
             player1CardLabels.Add(lbl_Player1Card2);
-            player1CardLabels.Add(lbl_Player1Card3);
-            player1CardLabels.Add(lbl_Player1Card4);
-            player1CardLabels.Add(lbl_Player1Card5);
 
             // Add player 2's card labels to a list
             player2CardLabels.Add(lbl_Player2Card1);
             player2CardLabels.Add(lbl_Player2Card2);
-            player2CardLabels.Add(lbl_Player2Card3);
-            player2CardLabels.Add(lbl_Player2Card4);
-            player2CardLabels.Add(lbl_Player2Card5);
 
             BuildDeck();
         }
@@ -76,12 +70,12 @@ namespace Special_Project_2
         {
             if (whosTurn == 1) // If player 1's turn...
             {
-                lbl_Player1Turn.Text = $"{timeLeft} second(s)...";
+                lbl_Player1Turn.Text = $"{timeLeft} second(s)..";
                 timeLeft--;
             }
             else if (whosTurn == 2) // If player 2's turn...
             {
-                lbl_Player2Turn.Text = $"{timeLeft} second(s)";
+                lbl_Player2Turn.Text = $"{timeLeft} second(s)..";
                 timeLeft--;
             }
 
