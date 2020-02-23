@@ -16,10 +16,10 @@ namespace Special_Project_2 {
             Display = "NULL";
         }
 
-        public Card(string v1, string v2, string v3) {
-            this.Display = v1;
-            this.Suit = v2;
-            this.Number = v3;
+        public Card(string s1, string s2, string s3) {
+            Display = s1;
+            Suit = s2;
+            Number = s3;
         }
 
         public void SetSuit(string input) {

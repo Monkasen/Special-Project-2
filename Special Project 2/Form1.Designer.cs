@@ -46,7 +46,6 @@
             this.timer_TurnStart = new System.Windows.Forms.Timer(this.components);
             this.btn_Draw = new System.Windows.Forms.Button();
             this.btn_Fold = new System.Windows.Forms.Button();
-            this.btn_Check = new System.Windows.Forms.Button();
             this.btn_Swap = new System.Windows.Forms.Button();
             this.lbl_GameTxt = new System.Windows.Forms.Label();
             this.lbl_Comm1 = new System.Windows.Forms.Label();
@@ -215,7 +214,7 @@
             // btn_Draw
             // 
             this.btn_Draw.Enabled = false;
-            this.btn_Draw.Location = new System.Drawing.Point(420, 352);
+            this.btn_Draw.Location = new System.Drawing.Point(373, 333);
             this.btn_Draw.Name = "btn_Draw";
             this.btn_Draw.Size = new System.Drawing.Size(75, 23);
             this.btn_Draw.TabIndex = 36;
@@ -226,24 +225,13 @@
             // btn_Fold
             // 
             this.btn_Fold.Enabled = false;
-            this.btn_Fold.Location = new System.Drawing.Point(518, 352);
+            this.btn_Fold.Location = new System.Drawing.Point(471, 333);
             this.btn_Fold.Name = "btn_Fold";
             this.btn_Fold.Size = new System.Drawing.Size(75, 23);
             this.btn_Fold.TabIndex = 37;
             this.btn_Fold.Text = "Fold";
             this.btn_Fold.UseVisualStyleBackColor = true;
             this.btn_Fold.Click += new System.EventHandler(this.btn_Fold_Click);
-            // 
-            // btn_Check
-            // 
-            this.btn_Check.Enabled = false;
-            this.btn_Check.Location = new System.Drawing.Point(323, 352);
-            this.btn_Check.Name = "btn_Check";
-            this.btn_Check.Size = new System.Drawing.Size(75, 23);
-            this.btn_Check.TabIndex = 38;
-            this.btn_Check.Text = "Check";
-            this.btn_Check.UseVisualStyleBackColor = true;
-            this.btn_Check.Click += new System.EventHandler(this.btn_Check_Click);
             // 
             // btn_Swap
             // 
@@ -260,11 +248,10 @@
             // 
             this.lbl_GameTxt.AutoSize = true;
             this.lbl_GameTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.lbl_GameTxt.Location = new System.Drawing.Point(390, 24);
+            this.lbl_GameTxt.Location = new System.Drawing.Point(404, 45);
             this.lbl_GameTxt.Name = "lbl_GameTxt";
-            this.lbl_GameTxt.Size = new System.Drawing.Size(100, 24);
+            this.lbl_GameTxt.Size = new System.Drawing.Size(0, 24);
             this.lbl_GameTxt.TabIndex = 40;
-            this.lbl_GameTxt.Text = "what is this";
             // 
             // lbl_Comm1
             // 
@@ -383,7 +370,6 @@
             this.Controls.Add(this.btn_Comm1);
             this.Controls.Add(this.lbl_GameTxt);
             this.Controls.Add(this.btn_Swap);
-            this.Controls.Add(this.btn_Check);
             this.Controls.Add(this.btn_Fold);
             this.Controls.Add(this.btn_Draw);
             this.Controls.Add(this.lbl_Player2Turn);
@@ -429,7 +415,6 @@
         private System.Windows.Forms.Timer timer_TurnStart;
         private System.Windows.Forms.Button btn_Draw;
         private System.Windows.Forms.Button btn_Fold;
-        private System.Windows.Forms.Button btn_Check;
         private System.Windows.Forms.Button btn_Swap;
         private System.Windows.Forms.Label lbl_GameTxt;
         private System.Windows.Forms.Label lbl_Comm1;

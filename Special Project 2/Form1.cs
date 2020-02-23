@@ -16,6 +16,7 @@ namespace Special_Project_2
         // Lists that contain objects useful for editing en masse
         public List<System.Windows.Forms.Label> player1CardLabels = new List<System.Windows.Forms.Label>();
         public List<System.Windows.Forms.Label> player2CardLabels = new List<System.Windows.Forms.Label>();
+        public List<System.Windows.Forms.Label> communityCardLabels = new List<System.Windows.Forms.Label>();
 
         public int timeLeft = 5;
         public int whosTurn = 1;
@@ -38,7 +39,12 @@ namespace Special_Project_2
             player2CardLabels.Add(lbl_Player2Card1);
             player2CardLabels.Add(lbl_Player2Card2);
 
-            BuildDeck();
+            // Add community card labels to a list
+            communityCardLabels.Add(lbl_Comm1);
+            communityCardLabels.Add(lbl_Comm2);
+            communityCardLabels.Add(lbl_Comm3);
+            communityCardLabels.Add(lbl_Comm4);
+            communityCardLabels.Add(lbl_Comm5);
         }
 
         private void btn_Exit_Click(object sender, EventArgs e)
@@ -48,21 +54,31 @@ namespace Special_Project_2
 
         private void btn_NewGame_Click(object sender, EventArgs e)
         {
+            BuildDeck();
+
             foreach (var item in player1CardLabels)
                 item.Text = "";
             foreach (var item in player2CardLabels)
                 item.Text = "";
+            foreach (var item in communityCardLabels)
+                item.Text = "";
 
-            // Hide cards/game text from sight
+            // Reset card/player visiblity
             lbl_Player1Turn.Visible = true;
             lbl_Player2Turn.Visible = true;
             pb_HidePlayer1Cards.Visible = true;
             pb_HidePlayer2Cards.Visible = true;
             lbl_GameTxt.Text = "";
+            lbl_Player1Turn.Text = "Player 1";
+            lbl_Player2Turn.Text = "Player 2";
+
+            // Reset game butttons
+            btn_Fold.Enabled = false;
+            btn_Swap.Enabled = false;
 
             // Countdown to player 1's turn
             whosTurn = 1;
-            timeLeft = 5;
+            timeLeft = 1;
             timer_TurnStart.Start();
         }
 
@@ -78,24 +94,42 @@ namespace Special_Project_2
                 lbl_Player2Turn.Text = $"{timeLeft} second(s)..";
                 timeLeft--;
             }
+            else if (whosTurn == 3) // If dealer's turn...
+           {
+                lbl_Player1Turn.Text = $"{timeLeft} second(s)..";
+                lbl_Player2Turn.Text = $"{timeLeft} second(s)..";
+                timeLeft--;
+            }
 
             if (timeLeft == -1 && whosTurn == 1) // If player 1's turn...
             {
-                lbl_Player1Turn.Visible = false; //Hide player 1's cards
+                lbl_Player1Turn.Visible = false; // Hide player 1's cards
                 pb_HidePlayer1Cards.Visible = false;
-                lbl_Player2Turn.Visible = true; //Display player 2's cards
+                lbl_Player2Turn.Visible = true; // Display player 2's cards
                 pb_HidePlayer2Cards.Visible = true;
-                lbl_Player1Turn.Text = ""; //Hide countdown text
+                lbl_Player1Turn.Text = ""; // Hide countdown text
                 ChangeButtonState();
                 timer_TurnStart.Stop();
             }
             else if (timeLeft == -1 && whosTurn == 2) // If player 2's turn...
             {
-                lbl_Player2Turn.Visible = false; //Hide player 2's cards
+                lbl_Player2Turn.Visible = false; // Hide player 2's cards
                 pb_HidePlayer2Cards.Visible = false;
-                lbl_Player1Turn.Visible = true; //Display player 1's cards
+                lbl_Player1Turn.Visible = true; // Display player 1's cards
                 pb_HidePlayer1Cards.Visible = true;
-                lbl_Player2Turn.Text = ""; //Hide countdown text
+                lbl_Player2Turn.Text = ""; // Hide countdown text
+                ChangeButtonState();
+                timer_TurnStart.Stop();
+            }
+            else if (timeLeft == -1 && whosTurn == 3) // If dealers's turn...
+            {
+                lbl_GameTxt.Text = "Dealer's Turn";
+                lbl_Player1Turn.Visible = true; // Hide player 1's cards
+                pb_HidePlayer1Cards.Visible = true;
+                lbl_Player2Turn.Visible = true; // Hide player 2's cards
+                pb_HidePlayer2Cards.Visible = true;
+                lbl_Player1Turn.Text = "Player 1"; 
+                lbl_Player2Turn.Text = "Player 2"; 
                 ChangeButtonState();
                 timer_TurnStart.Stop();
             }
@@ -113,7 +147,8 @@ namespace Special_Project_2
                 lbl_Player1Card2.Text = ($"{currCard.GetDisplay()}");
                 Deck.RemoveAt(random);
                 --deckSize;
-                ChangeButtonState();
+                btn_Draw.Enabled = false;
+                btn_Fold.Enabled = true;
                 btn_Swap.Enabled = true;
             }
             if (round == 1 && whosTurn == 2) { //If first round & player 2's turn...
@@ -127,44 +162,89 @@ namespace Special_Project_2
                 lbl_Player2Card2.Text = ($"{currCard.GetDisplay()}");
                 Deck.RemoveAt(random);
                 --deckSize;
-                ChangeButtonState();
+                btn_Draw.Enabled = false;
+                btn_Fold.Enabled = true;
                 btn_Swap.Enabled = true;
             }
-        }
+            if (round == 1 && whosTurn == 3) { //If first round & dealer's turn...
+                random = rand.Next(1, deckSize);
+                currCard = Deck.ElementAt(random);
+                lbl_Comm1.Text = ($"{currCard.GetDisplay()}");
+                Deck.RemoveAt(random);
+                --deckSize;
+                random = rand.Next(1, deckSize);
+                currCard = Deck.ElementAt(random);
+                lbl_Comm2.Text = ($"{currCard.GetDisplay()}");
+                Deck.RemoveAt(random);
+                --deckSize;
+                random = rand.Next(1, deckSize);
+                currCard = Deck.ElementAt(random);
+                lbl_Comm3.Text = ($"{currCard.GetDisplay()}");
+                Deck.RemoveAt(random);
+                --deckSize;
+                btn_Draw.Enabled = false;
+                btn_Swap.Enabled = true;
+                ++round; //Increase round after dealer draws cards
+                return;
+            }
 
-        private void btn_Check_Click(object sender, EventArgs e) { //NOTE: ADD FUNCTIONALITY TO ONLY ALLOW PLAYER TO CHECK ONCE, FORCE DRAW ON NEXT TURN
-            if (whosTurn == 1) { //Not yet properly implemented.
-                whosTurn = 2;
+            if (round == 2 && whosTurn == 3) { //If second round and dealers's turn...
+                random = rand.Next(1, deckSize);
+                currCard = Deck.ElementAt(random);
+                lbl_Comm4.Text = ($"{currCard.GetDisplay()}");
+                Deck.RemoveAt(random);
+                --deckSize;
+                btn_Draw.Enabled = false;
+                btn_Swap.Enabled = true;
+                ++round; //Increase round after dealer draws cards
+                return;
             }
-            else if (whosTurn == 2) {
-                whosTurn = 1;
+
+            if (round == 3 && whosTurn == 3) { //If third round and dealers's turn...
+                random = rand.Next(1, deckSize);
+                currCard = Deck.ElementAt(random);
+                lbl_Comm5.Text = ($"{currCard.GetDisplay()}");
+                Deck.RemoveAt(random);
+                --deckSize;
+                btn_Draw.Enabled = false;
+                btn_Swap.Enabled = true;
+                ++round; //Increase round after dealer draws cards
+                return;
             }
-            timeLeft = 5;
-            timer_TurnStart.Start();
-            //round++;
         }
 
         private void btn_Swap_Click(object sender, EventArgs e) {
+            btn_Draw.Enabled = false;
+            btn_Fold.Enabled = false;
             btn_Swap.Enabled = false;
-            if (whosTurn == 1) { 
+
+            if (whosTurn == 1) { // If player 1's turn...
                 whosTurn = 2;
                 pb_HidePlayer1Cards.Visible = true;
                 lbl_Player1Turn.Text = "Player 1";
                 lbl_Player1Turn.Visible = true;
             }
-            else if (whosTurn == 2) {
-                whosTurn = 1;
+            else if (whosTurn == 2) { // If player 2's turn...
+                whosTurn = 3;
                 pb_HidePlayer2Cards.Visible = true;
                 lbl_Player2Turn.Text = "Player 2";
                 lbl_Player2Turn.Visible = true;
             }
-            timeLeft = 5;
+            else if (whosTurn == 3) { // If dealer's turn...
+                lbl_GameTxt.Text = "";
+                whosTurn = 1;
+            }
+
+            if (round == 4 && whosTurn == 3) { //Checks for winner at end of game.
+                CheckWin();
+                return;
+            }
+
+            timeLeft = 1;
             timer_TurnStart.Start();
-            //round++;
         }
 
         private void btn_Fold_Click(object sender, EventArgs e) {
-            ChangeButtonState();
             if (whosTurn == 1) 
             {
                 lbl_GameTxt.Text = "Player 2 wins!";
@@ -173,6 +253,9 @@ namespace Special_Project_2
             {
                 lbl_GameTxt.Text = "Player 1 wins!";
             }
+            btn_Draw.Enabled = false;
+            btn_Fold.Enabled = false;
+            btn_Swap.Enabled = false;
         }
 
         public void BuildDeck() { //Creates deck to draw cards from.
@@ -288,17 +371,45 @@ namespace Special_Project_2
             Deck.Add(c51);
             Deck.Add(c52);
         } 
-        public void ChangeButtonState() { //Enables button pressing if disabled, disables button pressing if enabled.
-            if (btn_Fold.Enabled == true) {
-                btn_Draw.Enabled = false;
-                btn_Check.Enabled = false;
-                btn_Fold.Enabled = false;
+
+        public void ChangeButtonState() { // Handles enabling/disabling of button presses (draw,swap,fold) throughout the game.
+            if (round == 1) {
+                if (whosTurn == 1) {
+                    btn_Draw.Enabled = true;
+                    btn_Fold.Enabled = false;
+                }
+                if (whosTurn == 2) {
+                    btn_Draw.Enabled = true;
+                }
+                if (whosTurn == 3) {
+                    btn_Draw.Enabled = true;
+                    btn_Fold.Enabled = false;
+                }
             }
-            else if (btn_Fold.Enabled == false) {
-                btn_Draw.Enabled = true;
-                btn_Check.Enabled = true;
-                btn_Fold.Enabled = true;
+            else if (round == 2 || round == 3 || round == 4) {
+                if (whosTurn == 1 || whosTurn == 2) {
+                    btn_Draw.Enabled = false;
+                    btn_Fold.Enabled = true;
+                    btn_Swap.Enabled = true;
+                }
+                else if (whosTurn == 3) {
+                    btn_Draw.Enabled = true;
+                    btn_Fold.Enabled = false;
+                    btn_Swap.Enabled = false;
+                }
             }
-        } 
+            if (round == 4 && whosTurn == 2) { // If it's the last turn before the end of the game, change the Swap button to reveal who won.
+                btn_Swap.Text = "Reveal Winner";
+            }
+        }
+
+        public void CheckWin() {
+            lbl_Player1Turn.Visible = false; // Show player 1's cards
+            pb_HidePlayer1Cards.Visible = false;
+            lbl_Player2Turn.Visible = false; // Show player 2's cards
+            pb_HidePlayer2Cards.Visible = false;
+
+            lbl_GameTxt.Text = "GAME OVER"; //Use this label to display if player 1 or 2 wins.
+        }
     }
 }
