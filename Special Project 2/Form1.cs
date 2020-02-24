@@ -77,8 +77,9 @@ namespace Special_Project_2
             btn_Swap.Enabled = false;
 
             // Countdown to player 1's turn
+            round = 1;
             whosTurn = 1;
-            timeLeft = 1;
+            timeLeft = 5;
             timer_TurnStart.Start();
         }
 
@@ -240,7 +241,7 @@ namespace Special_Project_2
                 return;
             }
 
-            timeLeft = 1;
+            timeLeft = 5;
             timer_TurnStart.Start();
         }
 
