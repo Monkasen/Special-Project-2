@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -23,6 +24,7 @@ namespace Special_Project_2
         public int round = 1;
         int random = 1;
         int deckSize = 52;
+        bool IsMusicPlaying = false;
         Random rand = new Random();
         List<Card> Deck = new List<Card>();
         Card currCard = new Card();
@@ -355,6 +357,19 @@ namespace Special_Project_2
             pb_HidePlayer2Cards.Visible = false;
 
             lbl_GameTxt.Text = "GAME OVER"; //Use this label to display if player 1 or 2 wins.
+        }
+
+        private void musicButton_Click(object sender, EventArgs e) {
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "gta.wav");
+            System.Media.SoundPlayer sp = new System.Media.SoundPlayer(path);
+            if (IsMusicPlaying == false) {
+                sp.PlayLooping();
+                IsMusicPlaying = true;
+            }
+            else if (IsMusicPlaying == true) {
+                sp.Stop();
+                IsMusicPlaying = false;
+            }
         }
     }
 }
