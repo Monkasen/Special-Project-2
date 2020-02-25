@@ -96,7 +96,7 @@ namespace Special_Project_2
                 timeLeft--;
             }
             else if (whosTurn == 3) // If dealer's turn...
-           {
+            {
                 lbl_Player1Turn.Text = $"{timeLeft} second(s)..";
                 lbl_Player2Turn.Text = $"{timeLeft} second(s)..";
                 timeLeft--;
@@ -260,117 +260,61 @@ namespace Special_Project_2
         }
 
         public void BuildDeck() { //Creates deck to draw cards from.
-            Card c1 = new Card("\U0001F0A1", "Spades", "Ace");
-            Card c2 = new Card("\U0001F0A2", "Spades", "2");
-            Card c3 = new Card("\U0001F0A3", "Spades", "3");
-            Card c4 = new Card("\U0001F0A4", "Spades", "4");
-            Card c5 = new Card("\U0001F0A5", "Spades", "5");
-            Card c6 = new Card("\U0001F0A6", "Spades", "6");
-            Card c7 = new Card("\U0001F0A7", "Spades", "7");
-            Card c8 = new Card("\U0001F0A8", "Spades", "8");
-            Card c9 = new Card("\U0001F0A9", "Spades", "9");
-            Card c10 = new Card("\U0001F0AA", "Spades", "10");
-            Card c11 = new Card("\U0001F0AB", "Spades", "Jack");
-            Card c12 = new Card("\U0001F0AD", "Spades", "Queen");
-            Card c13 = new Card("\U0001F0AE", "Spades", "King");
+            Deck.Add(new Card("\U0001F0A1", "Spades", "Ace"));
+            Deck.Add(new Card("\U0001F0A2", "Spades", "2"));
+            Deck.Add(new Card("\U0001F0A3", "Spades", "3"));
+            Deck.Add(new Card("\U0001F0A4", "Spades", "4"));
+            Deck.Add(new Card("\U0001F0A5", "Spades", "5"));
+            Deck.Add(new Card("\U0001F0A6", "Spades", "6"));
+            Deck.Add(new Card("\U0001F0A7", "Spades", "7"));
+            Deck.Add(new Card("\U0001F0A8", "Spades", "8"));
+            Deck.Add(new Card("\U0001F0A9", "Spades", "9"));
+            Deck.Add(new Card("\U0001F0AA", "Spades", "10"));
+            Deck.Add(new Card("\U0001F0AB", "Spades", "Jack"));
+            Deck.Add(new Card("\U0001F0AD", "Spades", "Queen"));
+            Deck.Add(new Card("\U0001F0AE", "Spades", "King"));
+         
+            Deck.Add(new Card("\U0001F0B1", "Hearts", "Ace"));
+            Deck.Add(new Card("\U0001F0B2", "Hearts", "2"));
+            Deck.Add(new Card("\U0001F0B3", "Hearts", "3"));
+            Deck.Add(new Card("\U0001F0B4", "Hearts", "4"));
+            Deck.Add(new Card("\U0001F0B5", "Hearts", "5"));
+            Deck.Add(new Card("\U0001F0B6", "Hearts", "6"));
+            Deck.Add(new Card("\U0001F0B7", "Hearts", "7"));
+            Deck.Add(new Card("\U0001F0B8", "Hearts", "8"));
+            Deck.Add(new Card("\U0001F0B9", "Hearts", "9"));
+            Deck.Add(new Card("\U0001F0BA", "Hearts", "10"));
+            Deck.Add(new Card("\U0001F0BB", "Hearts", "Jack"));
+            Deck.Add(new Card("\U0001F0BD", "Hearts", "Queen"));
+            Deck.Add(new Card("\U0001F0BE", "Hearts", "King"));
 
-            Card c14 = new Card("\U0001F0B1", "Hearts", "Ace");
-            Card c15 = new Card("\U0001F0B2", "Hearts", "2");
-            Card c16 = new Card("\U0001F0B3", "Hearts", "3");
-            Card c17 = new Card("\U0001F0B4", "Hearts", "4");
-            Card c18 = new Card("\U0001F0B5", "Hearts", "5");
-            Card c19 = new Card("\U0001F0B6", "Hearts", "6");
-            Card c20 = new Card("\U0001F0B7", "Hearts", "7");
-            Card c21 = new Card("\U0001F0B8", "Hearts", "8");
-            Card c22 = new Card("\U0001F0B9", "Hearts", "9");
-            Card c23 = new Card("\U0001F0BA", "Hearts", "10");
-            Card c24 = new Card("\U0001F0BB", "Hearts", "Jack");
-            Card c25 = new Card("\U0001F0BD", "Hearts", "Queen");
-            Card c26 = new Card("\U0001F0BE", "Hearts", "King");
+            Deck.Add(new Card("\U0001F0C1", "Diamonds", "Ace"));
+            Deck.Add(new Card("\U0001F0C2", "Diamonds", "2"));
+            Deck.Add(new Card("\U0001F0C3", "Diamonds", "3"));
+            Deck.Add(new Card("\U0001F0C4", "Diamonds", "4"));
+            Deck.Add(new Card("\U0001F0C5", "Diamonds", "5"));
+            Deck.Add(new Card("\U0001F0C6", "Diamonds", "6"));
+            Deck.Add(new Card("\U0001F0C7", "Diamonds", "7"));
+            Deck.Add(new Card("\U0001F0C8", "Diamonds", "8"));
+            Deck.Add(new Card("\U0001F0C9", "Diamonds", "9"));
+            Deck.Add(new Card("\U0001F0CA", "Diamonds", "10"));
+            Deck.Add(new Card("\U0001F0CB", "Diamonds", "Jack"));
+            Deck.Add(new Card("\U0001F0CD", "Diamonds", "Queen"));
+            Deck.Add(new Card("\U0001F0CE", "Diamonds", "King"));
 
-            Card c27 = new Card("\U0001F0C1", "Diamonds", "Ace");
-            Card c28 = new Card("\U0001F0C2", "Diamonds", "2");
-            Card c29 = new Card("\U0001F0C3", "Diamonds", "3");
-            Card c30 = new Card("\U0001F0C4", "Diamonds", "4");
-            Card c31 = new Card("\U0001F0C5", "Diamonds", "5");
-            Card c32 = new Card("\U0001F0C6", "Diamonds", "6");
-            Card c33 = new Card("\U0001F0C7", "Diamonds", "7");
-            Card c34 = new Card("\U0001F0C8", "Diamonds", "8");
-            Card c35 = new Card("\U0001F0C9", "Diamonds", "9");
-            Card c36 = new Card("\U0001F0CA", "Diamonds", "10");
-            Card c37 = new Card("\U0001F0CB", "Diamonds", "Jack");
-            Card c38 = new Card("\U0001F0CD", "Diamonds", "Queen");
-            Card c39 = new Card("\U0001F0CE", "Diamonds", "King");
-
-            Card c40 = new Card("\U0001F0D1", "Clubs", "Ace");
-            Card c41 = new Card("\U0001F0D2", "Clubs", "2");
-            Card c42 = new Card("\U0001F0D3", "Clubs", "3");
-            Card c43 = new Card("\U0001F0D4", "Clubs", "4");
-            Card c44 = new Card("\U0001F0D5", "Clubs", "5");
-            Card c45 = new Card("\U0001F0D6", "Clubs", "6");
-            Card c46 = new Card("\U0001F0D7", "Clubs", "7");
-            Card c47 = new Card("\U0001F0D8", "Clubs", "8");
-            Card c48 = new Card("\U0001F0D9", "Clubs", "9");
-            Card c49 = new Card("\U0001F0DA", "Clubs", "10");
-            Card c50 = new Card("\U0001F0DB", "Clubs", "Jack");
-            Card c51 = new Card("\U0001F0DD", "Clubs", "Queen");
-            Card c52 = new Card("\U0001F0DE", "Clubs", "King");
-
-            Deck.Add(c1);
-            Deck.Add(c2);
-            Deck.Add(c3);
-            Deck.Add(c4);
-            Deck.Add(c5);
-            Deck.Add(c6);
-            Deck.Add(c7);
-            Deck.Add(c8);
-            Deck.Add(c9);
-            Deck.Add(c10);
-            Deck.Add(c11);
-            Deck.Add(c12);
-            Deck.Add(c13);
-
-            Deck.Add(c14);
-            Deck.Add(c15);
-            Deck.Add(c16);
-            Deck.Add(c17);
-            Deck.Add(c18);
-            Deck.Add(c19);
-            Deck.Add(c20);
-            Deck.Add(c21);
-            Deck.Add(c22);
-            Deck.Add(c23);
-            Deck.Add(c24);
-            Deck.Add(c25);
-            Deck.Add(c26);
-
-            Deck.Add(c27);
-            Deck.Add(c28);
-            Deck.Add(c29);
-            Deck.Add(c30);
-            Deck.Add(c31);
-            Deck.Add(c32);
-            Deck.Add(c33);
-            Deck.Add(c34);
-            Deck.Add(c35);
-            Deck.Add(c36);
-            Deck.Add(c37);
-            Deck.Add(c38);
-            Deck.Add(c39);
-
-            Deck.Add(c40);
-            Deck.Add(c41);
-            Deck.Add(c42);
-            Deck.Add(c43);
-            Deck.Add(c44);
-            Deck.Add(c45);
-            Deck.Add(c46);
-            Deck.Add(c47);
-            Deck.Add(c48);
-            Deck.Add(c49);
-            Deck.Add(c50);
-            Deck.Add(c51);
-            Deck.Add(c52);
+            Deck.Add(new Card("\U0001F0D1", "Clubs", "Ace"));
+            Deck.Add(new Card("\U0001F0D2", "Clubs", "2"));
+            Deck.Add(new Card("\U0001F0D3", "Clubs", "3"));
+            Deck.Add(new Card("\U0001F0D4", "Clubs", "4"));
+            Deck.Add(new Card("\U0001F0D5", "Clubs", "5"));
+            Deck.Add(new Card("\U0001F0D6", "Clubs", "6"));
+            Deck.Add(new Card("\U0001F0D7", "Clubs", "7"));
+            Deck.Add(new Card("\U0001F0D8", "Clubs", "8"));
+            Deck.Add(new Card("\U0001F0D9", "Clubs", "9"));
+            Deck.Add(new Card("\U0001F0DA", "Clubs", "10"));
+            Deck.Add(new Card("\U0001F0DB", "Clubs", "Jack"));
+            Deck.Add(new Card("\U0001F0DD", "Clubs", "Queen"));
+            Deck.Add(new Card("\U0001F0DE", "Clubs", "King"));
         } 
 
         public void ChangeButtonState() { // Handles enabling/disabling of button presses (draw,swap,fold) throughout the game.
